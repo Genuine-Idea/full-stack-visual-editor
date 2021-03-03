@@ -1,0 +1,48 @@
+name: Build React Static and Push
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    pull_request:
+      branches:
+        - main
+
+jobs:
+  build:
+    name: Test and Deploy NPM
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 14 LTS
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/my-app/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+      - name: Deploy
+        if: github.repository_owner == 'Genuine-Idea'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          cname: builder.velnota.com
+          # Keep the files for deployment purposes. We don't want
+          # users getting 404 errors for missing JS files simply
+          # because the servers haven't finished deploying yet with
+          # the new index.html file
+          keep_files: true
