@@ -1,0 +1,18 @@
+$leftWidth: 20%;
+
+//noinspection CssUnknownTarget,CssUnknownTarget,CssUnknownTarget,CssUnknownTarget,CssUnknownTarget
+@import "grapesjs/src/styles/scss/main.scss";
+
+$singleColPanel: 710px;
+
+.#{$app-prefix}block {
+  align-items: center;
+
+  svg {
+    height: 40px;
+  }
+
+  @media screen and (max-width: $singleColPanel) {
+    width: 100%;
+  }
+}
