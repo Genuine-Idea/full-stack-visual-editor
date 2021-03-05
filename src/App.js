@@ -14,7 +14,7 @@ import grapesjs_custom_code from "grapesjs-custom-code";
 function App() {
   // TODO Add a storageManager for remote (from Getting Started in docs)
   return (
-      <Editor id="gjs" height="100%" width="auto" plugins={[
+      <Editor id="gjs" width="100vw" height="100vh" plugins={[
         grapesjs_plugin_export,
         grapesjs_blocks_basic,
         grapesjs_plugin_forms,

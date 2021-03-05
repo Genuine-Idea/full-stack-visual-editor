@@ -81,3 +81,5 @@ Editor.defaultProps = {
 };
 
 export default Editor;
+// Allows for usage as if it was loaded via script
+window.GrapesJS = GrapesJS;
