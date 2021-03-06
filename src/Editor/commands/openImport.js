@@ -1,6 +1,5 @@
 // From https://github.com/artf/grapesjs-preset-webpage/blob/master/src/commands/openImport.js
-// eslint-disable-next-line import/no-anonymous-default-export
-export default (editor, config) => {
+const openImport = (editor, config) => {
     const pfx = editor.getConfig('stylePrefix');
     const modal = editor.Modal;
     const codeViewer = editor.CodeManager.getViewer('CodeMirror').clone();
@@ -58,3 +57,5 @@ export default (editor, config) => {
         }
     }
 }
+
+export default openImport;
